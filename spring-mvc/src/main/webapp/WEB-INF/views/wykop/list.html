@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Stacja.IT - Formularz</title>
+</head>
+<link rel="stylesheet" type="text/css"
+      href="css/bootstrap.css"
+      th:href="@{/css/bootstrap.css}"/>
+<link rel="stylesheet" type="text/css"
+      href="css/bootstrap-grid.css"
+      th:href="@{/css/bootstrap-grid.css}"/>
+<link rel="stylesheet" type="text/css"
+      href="css/app.css"
+      th:href="@{/css/app.css}"/>
+<body>
+
+
+<h3>Lista</h3>
+
+<div class="container-fluid">
+
+    <div class="col-6">
+
+        <div class="row" th:each="wykop :${list}">
+            <div class="col">
+                <div class="row">
+                    <p th:text="${wykop.name}"/>
+                </div>
+                <div class="row">
+                    <p th:text="${wykop.description}"/>
+                </div>
+                <div class="row">
+                    <p th:text="${wykop.pageUrl}"/>
+                </div>
+                <div class="row">
+                    <img th:width="50px" th:height="50px" th:src="${wykop.pageImageUrl}">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script src="js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+
+</body>
+</html>

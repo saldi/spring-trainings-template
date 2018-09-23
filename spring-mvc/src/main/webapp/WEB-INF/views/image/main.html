@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Stacja.IT - API UI</title>
+</head>
+<link rel="stylesheet" type="text/css"
+      href="css/bootstrap.css"
+      th:href="@{/css/bootstrap.css}"/>
+<link rel="stylesheet" type="text/css"
+      href="css/bootstrap-grid.css"
+      th:href="@{/css/bootstrap-grid.css}"/>
+<link rel="stylesheet" type="text/css"
+      href="css/app.css"
+      th:href="@{/css/app.css}"/>
+<body>
+
+<div class="container" style="width: 50%">
+    <div class="row">
+        <div class="col-8">
+            <canvas id="canvas-area">
+
+            </canvas>
+        </div>
+        <div class="col-4">
+            <form id="form">
+                <div class="form-group">
+                    <label for="configName">Nazwa konfiguracji</label>
+                    <input type="name" class="form-control" id="configName" name="configName"
+                           placeholder="Enter configuation name" value="testowa">
+                </div>
+            </form>
+            <nav class="nav flex-column">
+                <button id="save" type="button" class="btn btn-secondary btn-space">Save</button>
+                <button id="load" type="button" class="btn btn-secondary btn-space">Load</button>
+            </nav>
+
+            <nav class="nav flex-column">
+                <button id="rect" type="button" class="btn btn-primary btn-space">Add Rect</button>
+                <button id="circle" type="button" class="btn btn-primary btn-space">Add Circle</button>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="js/fabric.min.js" th:src="@{/js/fabric.min.js}"></script>
+<script src="js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+<script src="js/canvas.js" th:src="@{/js/canvas.js}"></script>
+<script src="js/main.js" th:src="@{/js/main.js}"></script>
+<script src="js/functions.js" th:src="@{/js/functions.js}"></script>
+<script>
+
+    $(function () {
+        $("#save").click(function () {
+            var configName = $("#form input[name='configName']").val();
+            savePicture(configName, testCanvas.getCanvas())
+        });
+
+        $("#load").click(function () {
+            var configName = $("#form input[name='configName']").val();
+            loadPicture(configName, testCanvas.getCanvas())
+        })
+
+        $("#rect").click(function () {
+            addRect(testCanvas.getCanvas());
+        })
+
+        $("#circle").click(function () {
+            addCircle(testCanvas.getCanvas());
+        })
+    })
+
+
+</script>
+
+
+</body>
+</html>
