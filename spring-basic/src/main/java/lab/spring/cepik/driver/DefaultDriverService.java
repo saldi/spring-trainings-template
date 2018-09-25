@@ -1,24 +1,28 @@
 package lab.spring.cepik.driver;
 
 import lab.spring.cepik.activity.UserActivity;
+import lab.spring.cepik.driver.events.DriverEventsEmitter;
 import lab.spring.cepik.driver.supports.DriverFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.function.Supplier;
-
+@Service
 public class DefaultDriverService implements DriverService {
 
     private DriverFactory driverFactory;
-    private Supplier<UserActivity> userActivity;
 
+    private DriverEventsEmitter eventsEmitter;
 
-    public DefaultDriverService(DriverFactory driverFactory, Supplier<UserActivity> userActivity) {
+    public DefaultDriverService(DriverFactory driverFactory, DriverEventsEmitter eventsEmitter) {
         this.driverFactory = driverFactory;
-        this.userActivity = userActivity;
+        this.eventsEmitter = eventsEmitter;
     }
 
     public Driver registerNewDriver(String pesel, String firstName, String lastName, String birthDate) {
-        userActivity.get().registerActivity("register activity " + pesel);
-        return driverFactory.createDriver(pesel, firstName, lastName, birthDate);
+
+        Driver driver = driverFactory.createDriver(pesel, firstName, lastName, birthDate);
+        eventsEmitter.onDriverCreated(driver);
+        return driver;
     }
+
+
 }

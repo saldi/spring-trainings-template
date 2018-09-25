@@ -1,7 +1,8 @@
 package lab.spring.cepik.driver;
 
 import lab.spring.cepik.activity.UserActivity;
-import lab.spring.cepik.driver.conf.DriverConfiguration;
+import lab.spring.cepik.conf.CepikConfiguration;
+import lab.spring.cepik.conf.Profiles;
 import lab.spring.cepik.driver.supports.PropertiesExample;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -9,19 +10,17 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.sql.Time;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class SimpleDriverServiceTest {
 
-    ApplicationContext ctx;
+    AnnotationConfigApplicationContext ctx;
 
     @BeforeMethod
     public void setUp() {
-        ctx = new AnnotationConfigApplicationContext(DriverConfiguration.class);
+        System.setProperty("spring.profiles.active", Profiles.DEV);
+        ctx = new AnnotationConfigApplicationContext(CepikConfiguration.class);
     }
 
     @Test
@@ -43,11 +42,11 @@ public class SimpleDriverServiceTest {
     public void activityTest() throws InterruptedException {
 
         Thread[] threads = new Thread[5];
-        for(int i=0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
             threads[i] = new Thread(new ActivitySampler());
         }
 
-        for(int i=0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
             threads[i].start();
         }
 
@@ -79,11 +78,12 @@ public class SimpleDriverServiceTest {
                         System.out.println(activity.getMessage());
                     });
 
+            userActivity.clear();
         }
     }
 
     @Test
-    public void PropertiesTest(){
+    public void PropertiesTest() {
         String message = ctx.getBean(PropertiesExample.class)
                 .getMessage();
         System.out.println(message);

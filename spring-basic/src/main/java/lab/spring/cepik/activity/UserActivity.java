@@ -18,4 +18,8 @@ public class UserActivity {
     public List<Activity> getActivities() {
         return activities;
     }
+
+    public void clear(){
+        this.activities.clear();
+    }
 }
