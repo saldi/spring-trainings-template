@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -35,6 +36,16 @@ public class SimpleDriverServiceTest {
                 .registerNewDriver("44444444444", "Jan", "Kowalski", "1950/01/01");
         Assert.assertNotNull(driver);
         Assert.assertEquals(driver.getPesel(), "44444444444");
+    }
+
+    @Test
+    public void selectAllTest(){
+        DriverService service = ctx.getBean(DriverService.class);
+        List<Driver> drivers = service.selectAll();
+        Assert.assertNotNull(drivers);
+        drivers.stream().forEach(driver -> {
+            System.out.println(driver);
+        });
     }
 
 

@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 @Configuration
 @ComponentScan(basePackages = {"lab.spring.cepik.driver.supports",
         "lab.spring.cepik.driver.repository"}, scopedProxy = ScopedProxyMode.TARGET_CLASS)
-@PropertySource({"/lab/spring/app.properties"})
+@PropertySource({"classpath:/lab/spring/app.properties"})
 public class DriverConfiguration {
 
 

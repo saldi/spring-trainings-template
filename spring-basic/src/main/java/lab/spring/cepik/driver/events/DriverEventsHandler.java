@@ -9,15 +9,15 @@ import java.util.function.Supplier;
 @Component
 public class DriverEventsHandler {
 
-    private Supplier<UserActivity> userActivity;
+    private UserActivity userActivity;
 
-    public DriverEventsHandler(Supplier<UserActivity> userActivity) {
+    public DriverEventsHandler(UserActivity userActivity) {
         this.userActivity = userActivity;
     }
 
     @EventListener
     public void onDriverCreated(DriverCreatedEvent event) {
-        System.out.println("dodano kierowce " + event.getDriver());
+        userActivity.registerActivity("dodano kierowce hurra " + event.getDriver());
     }
 
 

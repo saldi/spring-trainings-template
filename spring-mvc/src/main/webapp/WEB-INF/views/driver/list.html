@@ -6,13 +6,13 @@
 </head>
 <link rel="stylesheet" type="text/css"
       href="css/bootstrap.css"
-      th:href="@{/css/bootstrap.css}"/>
+      th:href="@{/resources/css/bootstrap.css}"/>
 <link rel="stylesheet" type="text/css"
       href="css/bootstrap-grid.css"
-      th:href="@{/css/bootstrap-grid.css}"/>
+      th:href="@{/resources/css/bootstrap-grid.css}"/>
 <link rel="stylesheet" type="text/css"
       href="css/app.css"
-      th:href="@{/css/app.css}"/>
+      th:href="@{/resources/css/app.css}"/>
 <body>
 
 
@@ -22,19 +22,19 @@
 
     <div class="col-6">
 
-        <div class="row" th:each="wykop :${list}">
+        <div class="row" th:each="driver :${drivers}">
             <div class="col">
                 <div class="row">
-                    <p th:text="${wykop.name}"/>
+                    <p th:text="${driver.firstName}"/>
                 </div>
                 <div class="row">
-                    <p th:text="${wykop.description}"/>
+                    <p th:text="${driver.lastName}"/>
                 </div>
                 <div class="row">
-                    <p th:text="${wykop.pageUrl}"/>
+                    <p th:text="${driver.pesel}"/>
                 </div>
                 <div class="row">
-                    <img th:width="50px" th:height="50px" th:src="${wykop.pageImageUrl}">
+                    <p th:text="${driver.birthDate}"/>
                 </div>
             </div>
         </div>
@@ -45,8 +45,8 @@
 </div>
 
 
-<script src="js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-<script src="js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+<script src="js/jquery-3.3.1.min.js" th:src="@{/resources/js/jquery-3.3.1.min.js}"></script>
+<script src="js/bootstrap.js" th:src="@{/resources/js/bootstrap.js}"></script>
 
 </body>
 </html>
